@@ -65,26 +65,25 @@ router.post("/register", async (req, res)=>{
     
 })
 //User login
+
 router.post("/login", async(req, res)=>{
     const {email ,password} =req.body;
     const user= await User.findOne({email})
      if(!user.email){
-      return res.json({message:`Your  email "${user.email}" is not registered`})
+      return res.json({message:`Your  email "${user.email}" is invalid`})
      }
-  
      const isPasswordValid = await bcrypt.compare(user.password,password)
       if(!isPasswordValid){
          return res.json({message:"Password is incorrect. Please try again."})
       }
-      
       const token = jwt.sign({
-        id:user._id,
-        email:user.email,
-        isAdmin:user.isAdmin,
+        id:user._id, email:user.email, isAdmin:user.isAdmin,
       }, process.env.KEY, {expiresIn:"1d"})
       res.cookie("token", token, {httpOnly:true, maxAge:360000})
       return res.json({status:true,message:"User successfully logged in"})
 })
+
+
 
 router.get("/verify",verifyTokenAndAuthorization, async (req, res)=>{
   return res.json({ message:"Authorized", id:req.user.id, username:req.user.username})
@@ -148,12 +147,13 @@ router.post("/skill", verifyTokenAndAuthorization, async (req, res)=>{
 //     console.log(error)
 //   }
 // })
+
 // router.post("/reset-password/:token", async (req, res)=>{
 //   try {
 //     const {password}= req.body;
 //     const token = req.params;
 //     if(password==""){
-//       res.json({message:"Pasword is required"})
+//       res.json({message:"Password is required"})
 //     }
 //     if(!token){
 //       res.json({message:"Token is invalid"})
@@ -162,7 +162,6 @@ router.post("/skill", verifyTokenAndAuthorization, async (req, res)=>{
 //     const id = decoded.id;
 //     const hashedPassword = await bcrypt.hash(password,10)
 //     await User.findByIdAndUpdate({_id:id}, {password:hashedPassword})
-    
 //   } catch (error) {
 //     console.log(error)
 //   }

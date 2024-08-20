@@ -154,61 +154,102 @@ router.get('/jobs/categories',async (req, res) => {
   })
   router.get("/jobs", (request, response)=>{
     const jobTypes =["Full time", "Part time", "Contract", "Temporary", "Internship", "Learnership"]
-  response.status(200).json([{id:1, title:"Frontend developer", description:"We are big tech company based in Cape Town. We are looking for talented Frontend developer to join our team. Must be proficient in HTML, CSS, JavaScript, and frameworks such as React, Angular and Vue.",
+    response.status(200).json([{id:1, title:"Stock Assistant- Afrika Tikkun Services", description:"Work Experience, as a Stock Assistant, in Port Elizabeth .Responsibilities Data Capturing To handle, record and complete daily physical stock transfers Picking and Packing of orders .Perform periodic or random stock counts. Good Warehouse Keeping Ad Hoc. Requirements: Attention to detail. Knowledge of Excel (Basic - Intermediate). Mathematical Literacy Report writing skills. Must be able to perform under pressure. 1 - 2 Years experience with Telcommunications",
   level:"Entry",numberOfPeopleToHire:1,
   EmployeesResideInJoblocation:"Yes",
-  jobType:jobTypes[1],
+  jobType:"Not specified",
   locationThatBestDescriptionsTheJob:"In-person. Precise location",
-    posted:"13 June 2024", url:"https://www.indeed.com",province:"Gauteng",area:"Sandton, Johannesburg"}
-  , {id:2, title:"Backend developer", description:"Big tech company based in Johannesburg. Our client is looking for talented Backend developer to join our team. Must be proficient in HTML, CSS, JavaScript, and frameworks such as React, Angular and Vue. Must be proficient in backend languages such as C#, JavaScript and as well as their frameworks. Must have experience git.",
-  level:"Mid-level",numberOfPeopleToHire:1,
-  EmployeesResideInJoblocation:"No",
-  jobType:jobTypes[3],
-  locationThatBestDescriptionsTheJob:"Hybrid. The job combines working in office and remotely",
+    posted:"17 August 2024", url:"https://www.indeed.com",province:"Eastern Cape",area:"Port Elizabeth"}
+  , 
+
+  {id:2, title:"General Assistant - B4A Port Elizabeth", description:"Qualifications: Grade 12. Good communication skills. Product knowledge. Customer service orientated. Must be physically able to pick up heavy weights",
+  level:"Not specified",numberOfPeopleToHire:1,
+  EmployeesResideInJoblocation:"Yes",
+  jobType:jobTypes[0],
+  posted:"20 August 2024",
+
+  locationThatBestDescriptionsTheJob:"In-person. Precise location",
   numberOfPeopleToHire:1,
-  posted:"14 June 2024",url:"https://www.linkedincom",province:"Eastern Cape",area:"Port Elizabeth"}, 
-  {id:3, title:"Fullstack developer", description:"Big tech company based in Johannesburg. Our client is looking for talented Backend developer to join our team. Must be proficient in HTML, CSS, JavaScript, and frameworks such as React, Angular and Vue. Must be proficient in backend languages such as C#, JavaScript and as well as their frameworks. Must have experience git.", 
-  posted:"15 June 2024",
-  jobType:jobTypes[1],
-
+url:"https://thebuildingcompany.mcidirecthire.com/External/Application?Ref=m4fgzrmOdjsdJFpGPPCcsSrNvU9yv0lm1r2lW%2bicOU%2bdb27CpXwePnb792zgVrOOYYzF8NiaP95bxQNsQbONgj8oecF5hng4Idk%2fyOCBPXc%3d",province:"Eastern Cape",area:"Port Elizabeth"}, 
+  {id:3, title:"Admin Assistant", description:"Salary: R8 000 - R9 000 per month commensurate with qualification and experience. Qualifications / Requirements: · Matric Certificate · Excel experience essential · Organisational skills · Attention to detail · Good communication skills · Sage Evolution experience beneficial", 
+  posted:"20 August 2024",
+  level:"Not specified",
+  jobType:jobTypes[0],
   EmployeesResideInJoblocation:"No",
-  locationThatBestDescriptionsTheJob:"Remote. The job is performed remotely",
-  url:"https://www.indeed.com",province:"Western Cape",area:"Cape Town"},
-  {id:4, title:"Backend developer", description:"Big tech company based in Johannesburg. Our client is looking for talented Backend developer to join our team. Must be proficient in HTML, CSS, JavaScript, and frameworks such as React, Angular and Vue. Must be proficient in backend languages such as C#, JavaScript and as well as their frameworks. Must have experience git.", 
-  level:"Mid-level",  numberOfPeopleToHire:1,
-  EmployeesResideInJoblocation:"No",
-  jobType:jobTypes[3],
+  locationThatBestDescriptionsTheJob:"In-person. Precise location",
+  url:"https://www.indeed.com",province:"Eastern Cape",area:"Port Elizabeth"},
 
-  locationThatBestDescriptionsTheJob:"Remote. The job is performed remotely",
-  posted:"15 June 2024",province:"Gauteng",area:"Sandton, Johannesburg"}, 
-  {id:5, title:"Fullstack developer", description:"Big tech company based in Johannesburg. Our client is looking for talented Backend developer to join our team.",
-  level:"Mid-level",EmployeesResideInJoblocation:"No", 
-  numberOfPeopleToHire:2,  jobType:jobTypes[4],
+  {id:4, title:"Junior Frontend developer", description:" Our company is looking for talented Frontend developer to join our team. Requirements: Must be proficient in HTML5, CSS, JavaScript and TypeScript. Optimization of the application for maximum speed and scalability. Implementing automated testing platforms and unit tests.", 
+  level:"Entry",  numberOfPeopleToHire:1,
+  EmployeesResideInJoblocation:"No",
+  jobType:jobTypes[0],
+
   locationThatBestDescriptionsTheJob:"Hybrid. The job combines working in office and remotely",
-  posted:"16 June 2024",url:"https://www.indeed.com",province:"Gauteng",area:"Sandton, Johannesburg"},
+  posted:"20 August 2024",province:"Western Cape",area:"Somerset West"}, 
+  {id:5, title:"Junior web developer", description:"Requirements: 1-3 years of experience in software development. Develop and maintain unit tests and integration tests. Do code reviews and participate in pair programming. Implement and use git as a versioning tool",
+  level:"Junior/Mid-level",EmployeesResideInJoblocation:"No", 
+  numberOfPeopleToHire:1,  jobType:jobTypes[0],
+  locationThatBestDescriptionsTheJob:"Hybrid. The job combines working in office and remotely",
+  posted:"20 August 2024",url:"https://www.indeed.com",province:"Gauteng",area:"Pretoria"},
+
+  {id:6, title:"Shop Assistant", description:"Requirements: A matric, grade 12 or equivalent certificate. Ensure that point of sale and banking procedures are adhered and raise any areas of concern wit the area manager", 
+  level:"Entry",  numberOfPeopleToHire:1,
+  EmployeesResideInJoblocation:"No",
+  jobType:jobTypes[0],
+  locationThatBestDescriptionsTheJob:"In-person. Precise location",
+  posted:"20 August 2024",province:"Eastern Cape",area:"Port Elizabeth"}, 
+
+  {id:7, title:"Junior web developer ", description:"Requirements: Strong foundation and understanding of HTMLand CSS without using Bootstrap or page builders. The developer must be able to accurately follow designs and create the intended functionality", 
+  level:"Entry",  numberOfPeopleToHire:1,
+  EmployeesResideInJoblocation:"No",
+  jobType:jobTypes[0],
+
+  locationThatBestDescriptionsTheJob:"In-person. Precise location",
+  posted:"19 August 2024",province:"Western Cape",area:"Cape Town"}, 
+
+  {id:8, title:"Clerk: Receiving (Seanonal Permanent)", description:"The receiving clerk's responsibility include verifying the delivered Fibre and ensuring all data is correctly documented on the clip advise and delivery note. Ensure general housekeeping are done daily", 
+  level:"Not specified",  numberOfPeopleToHire:1,
+  EmployeesResideInJoblocation:"No",
+  jobType:jobTypes[0],
+
+  locationThatBestDescriptionsTheJob:"In-person. Precise location",
+  posted:"18 August 2024",province:"Eastern Cape",area:"Port Elizabeth"}, 
   ])
   })
   router.get("/savedJobs", (request, response)=>{
     const jobTypes =["Full time", "Part time", "Contract", "Temporary", "Internship", "Learnership"]
-  response.status(200).json([{id:1, title:"Frontend developer", description:"We are big tech company based in Cape Town. We are looking for talented Frontend developer to join our team. Must be proficient in HTML, CSS, JavaScript, and frameworks such as React, Angular and Vue.",
+  response.status(200).json([{id:1, title:"Stock Assistant- Afrika Tikkun Services", description:"Work Experience, as a Stock Assistant, in Port Elizabeth .Responsibilities Data Capturing To handle, record and complete daily physical stock transfers Picking and Packing of orders .Perform periodic or random stock counts. Good Warehouse Keeping Ad Hoc. Requirements: Attention to detail. Knowledge of Excel (Basic - Intermediate). Mathematical Literacy Report writing skills. Must be able to perform under pressure. 1 - 2 Years experience with Telcommunications",
   level:"Entry",numberOfPeopleToHire:1,
   EmployeesResideInJoblocation:"Yes",
-  jobType:jobTypes[1],
+  jobType:"Not specified",
   locationThatBestDescriptionsTheJob:"In-person. Precise location",
-    posted:"13 June 2024", url:"https://www.indeed.com",province:"Gauteng",area:"Sandton, Johannesburg"}
-  , {id:2, title:"Backend developer", description:"Big tech company based in Johannesburg. Our client is looking for talented Backend developer to join our team. Must be proficient in HTML, CSS, JavaScript, and frameworks such as React, Angular and Vue. Must be proficient in backend languages such as C#, JavaScript and as well as their frameworks. Must have experience git.",
-  level:"Mid-level",numberOfPeopleToHire:1,
-  EmployeesResideInJoblocation:"No",
-  jobType:jobTypes[3],
-  locationThatBestDescriptionsTheJob:"Hybrid. The job combines working in office and remotely",
+    posted:"17 August 2024", url:"https://www.indeed.com",province:"Eastern Cape",area:"Port Elizabeth"}
+  , 
+  
+  {id:2, title:"General Assistant - B4A Port Elizabeth", description:"Qualifications: Grade 12. Good communication skills. Product knowledge. Customer service orientated. Must be physically able to pick up heavy weights",
+  level:"Entry",numberOfPeopleToHire:1,
+  EmployeesResideInJoblocation:"Yes",
+  jobType:jobTypes[0],
+  posted:"20 August 2024",
+
+  locationThatBestDescriptionsTheJob:"In-person. Precise location",
   numberOfPeopleToHire:1,
-  posted:"14 June 2024",url:"https://www.linkedincom",province:"Eastern Cape",area:"Port Elizabeth"}, 
+url:"https://thebuildingcompany.mcidirecthire.com/External/Application?Ref=m4fgzrmOdjsdJFpGPPCcsSrNvU9yv0lm1r2lW%2bicOU%2bdb27CpXwePnb792zgVrOOYYzF8NiaP95bxQNsQbONgj8oecF5hng4Idk%2fyOCBPXc%3d",province:"Eastern Cape",area:"Port Elizabeth"}, 
    
-  {id:5, title:"Fullstack developer", description:"Big tech company based in Johannesburg. Our client is looking for talented Backend developer to join our team.",
-  level:"Mid-level",EmployeesResideInJoblocation:"No", 
-  numberOfPeopleToHire:2,  jobType:jobTypes[4],
+{id:4, title:"Jnuior Frontend developer", description:" Our company is looking for talented Frontend developer to join our team. Requirements: Must be proficient in HTML5, CSS, JavaScript and TypeScript. Optimization of the application for maximum speed and scalability. Implementing automated testing platforms and unit tests.", 
+  level:"Entry",  numberOfPeopleToHire:1,
+  EmployeesResideInJoblocation:"No",
+  jobType:jobTypes[0],
+
   locationThatBestDescriptionsTheJob:"Hybrid. The job combines working in office and remotely",
-  posted:"16 June 2024",url:"https://www.indeed.com",province:"Gauteng",area:"Sandton, Johannesburg"},
+  posted:"20 August 2024",province:"Western Cape",area:"Somerset West"}, 
+{id:5, title:"Junior web developer", description:"Requirements: 1-3 years of experience in software development. Develop and maintain unit tests and integration tests. Do code reviews and participate in pair programming. Implement and use git as a versioning tool",
+level:"Mid-level",EmployeesResideInJoblocation:"No", 
+numberOfPeopleToHire:1,  jobType:jobTypes[0],
+locationThatBestDescriptionsTheJob:"Hybrid. The job combines working in office and remotely",
+posted:"20 August 2024",url:"https://www.indeed.com",province:"Gauteng",area:"Pretoria"},
+
+
   ])
   })
 
