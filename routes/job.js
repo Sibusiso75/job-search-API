@@ -64,7 +64,7 @@ router.post("/save-job",verifyTokenAndAuthorization, async (req, res)=>{
   try {
  const certainJob = await Job.findOne()
             const newJobs = new SaveJob({
-              savedJobs: [],
+              savedJobs:[],
               userId:req.user.id,
               username:req.user.username
           })

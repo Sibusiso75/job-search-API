@@ -18,11 +18,11 @@ app.use(cookieParser())
 app.use(express.json())
 
 app.use(cors({
-  origin:["http://localhost:5173"],
+  origin:["https://jobsearchapp-aaoq.onrender.com"],
   credentials:true
 }))
 
-mongoose.connect("mongodb://localhost:27017/").then(()=>{
+mongoose.connect(process.env.MONGO_URI).then(()=>{
   console.log("MongoDB connected")
 }).catch((error)=>{
   console.log(error)
