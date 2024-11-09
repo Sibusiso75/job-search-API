@@ -1,31 +1,33 @@
-// const express = require("express")
-// const router = express.Router()
-// const Comment = require("../models/JobSeeker/Article")
-// const {verifyTokenAndAuthorization} = require("../verifyToken")
+const express = require("express")
+const router = express.Router()
+const Comment = require("../../models/JobSeeker/Post/Comment")
+const {verifyTokenAndAuthorization} = require("../verifyToken")
 
-// router.post("/addComment/:postID/",verifyTokenAndAuthorization,async (req, res)=>{
-// try {
-//  const {comment } = req.body;
+router.post("/addComment/:postID/",async (req, res)=>{
+try {
+ const {comment } = req.body;
 // const id = req.params.id; 
 // const foundUser = await User.findOne({id:req.user._id})
-// const foundPost = await Post.findOne({_id:id})
-// if(!foundUser){
-//           return res.json({message:"User not found"}) 
-// }
-// if(!id){
-//           return res.json({message:"Post not found"}) 
-// }
-// const newComment = new Comment({postId:id,comment, userId:foundUser._id,
-//           username:foundUser.username}) 
-//  await newComment.save()
-// return res.json({status:true,message:`${foundUser.username} has commented`})
-// } 
+const postID = "6719255e7a3fc533e53b8ec0"
+const foundUser = await User.findOne({id:"67191fed9737fae8fc9955bf"})
 
-// catch (error) {
-//           return res.json(error)
+if(!foundUser){
+          return res.json({message:"User not found"}) 
+}
+if(!postID){
+          return res.json({message:"Post not found"}) 
+}
+const newComment = new Comment({postId:postID,comment, userId:"6717aecb0c187be0ed865845",
+          username:"Sibusiso Matebese"}) 
+ await newComment.save()
+return res.json({status:true,message:"commented submittted successfully"})
+} 
+
+catch (error) {
+          return res.json(error)
           
-// }
-// })
+}
+})
 // router.put("/editComment/:id", verifyTokenAndAuthorization, async (req, res)=>{
 //           const id = req.params.id;
 //           const {comment} =req.body;
@@ -100,3 +102,4 @@
                              
 // //                    }
 // // })
+module.exports = router

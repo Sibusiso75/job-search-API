@@ -1,9 +1,9 @@
 const jwt = require("jsonwebtoken")
 
 function verifyToken(req,res,next){
-    const token = req.cookies.token;
-    if(token){
-        jwt.verify(token, process.env.KEY, (err,user)=>{
+    const authorization = req.cookies.token;
+    if(authorization){
+        jwt.verify(authorization, process.env.KEY, (err,user)=>{
             if(err){
                 return res.json({message:"Token is invalid"})
             }
@@ -15,6 +15,7 @@ function verifyToken(req,res,next){
         return res.json({message:"You are not authenticated"})
     }
 }
+
 function verifyTokenAndAuthorization(req,res,next){
     verifyToken(req,res,()=>{
         if(req.user.id===req.params.id || req.user.isAdmin){

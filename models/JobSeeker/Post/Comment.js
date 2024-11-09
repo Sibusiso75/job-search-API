@@ -6,5 +6,14 @@ const commentSchema= new mongoose.Schema({
     comment:{type:String, required:true},
     username:{type:String, required:true},
    
+    replies:[{
+        postId:{ref:"Post",  type:mongoose.SchemaTypes.ObjectId},
+        userId:{ref:"User",type:mongoose.SchemaTypes.ObjectId, required:true},
+        commentId:{type:mongoose.SchemaTypes.ObjectId, required:true},
+        reply:{type:String, required:true},
+        username:{type:String, required:true}
+    
+        }],
+        
 },{timestamps:true})
 module.exports = mongoose.model("Comment", commentSchema)

@@ -1,6 +1,12 @@
 const express = require("express")
 const router = express.Router()
-// const {verifyToken,verifyTokenAndAuthorization,verifyAdmin} = require("./verifyToken")
+const {verifyToken,verifyTokenAndAuthorization,verifyAdmin} = require("./verifyToken")
+const Employer = require("../models/Employer/Employer")
+const EmployerToken = require("../models/Employer/empToken")
+const {verifyToken,verifyTokenAndAuthorization,verifyAdmin} = require("../verifyToken")
+const bcrypt = require("bcrypt")
+const jwt = require("jsonwebtoken")
+const nodemailer = require("nodemailer")
 
 // router.get("/employers",verifyAdmin, (request, response)=>{
 //     response.status(200).json([{id:1,username:"Sibusiso Matebese",description:"Tech company that is focusing in Software development and online Marketing",province:"Eastern Cape",area:"Uitenhage",age:27,username:"Sibusiso Matebese", gender:"Male",email:"sibusisomatebese75@gmail.com",companyName:"Get Job", isAdmin:"Yes", password:"*************"}
@@ -9,45 +15,64 @@ const router = express.Router()
 //   {id:3,username:"Phumelela Platjiees",description:"Franchise business",province:"Eastern Cape",area:"Uitenhage",age:25,username:"Phumelela Platjiees", gender:"Male",email:"phumelelaplatjiees202@gmail.com", isAdmin:"No",companyName:"Kioaski", password:"********"}
 //   ])
 //   })
-  router.get("/employers", (request, response)=>{
-    response.status(200).json([{id:1,username:"Sibusiso Matebese",description:"Tech company that is focusing in Software development and online Marketing",province:"Eastern Cape",area:"Uitenhage",age:27,username:"Sibusiso Matebese", gender:"Male",email:"sibusisomatebese75@gmail.com",companyName:"Get Job", isAdmin:"Yes", password:"*************"}
-  ,
-  {id:2,username:"Siyasanga Dobela",companyName:"ShoeDesign",description:"Shoe design company",province:"Eastern Cape",area:"Uitenhage",age:32,username:"Siyasanga Dobela", gender:"Male",email:"siyasangadobela2@gmail.com", isAdmin:"No", password:"************"},
-  {id:3,username:"Phumelela Platjiees",description:"Franchise business",province:"Eastern Cape",area:"Uitenhage",age:25,username:"Phumelela Platjiees", gender:"Male",email:"phumelelaplatjiees202@gmail.com", isAdmin:"No",companyName:"Kioaski", password:"********"}
-  ])
-  })
-  // //Registration - POST REQUEST
-// router.post("/employerRegister", async (req, res)=>{
-//     try {
-//         const {name, email, password }=req.body;
-//         const employer = await Employer.findOne({email})
-//         if(employer){
-//             return res.json({message:"employer already exists"})
-//         }
-//         if(employer.name==""){
-//             return res.json({message:"employername cannot be empty"})
-//         }
-//         if(employer.email==""){
-//             return res.json({message:"email cannot be empty"})
-//         }
-//         if(employer.password==""){
-//             return res.json({message:"password cannot be empty"})
-//         }    
-//         if(employer.password.minLength<6){
-//             return res.json({message:"password must have at least 6 characters"})
-//         }
-        
-//         const hashedPassword = await bcrypt.hash(password,10)
-//         const newEmployer =  new employer({
-//              name, email, password:hashedPassword
-//         })
-//         await newEmployer.save()
-//         return res.json({status:true,message:"employer has been registered successfully"})
-//     } catch (error) {
-//         return res.json(error)
-//     }
+  
+  //Registration - POST REQUEST
+router.post("/employerRegister", async (req, res)=>{
+  try {
+    const {username, email,phoneNumber, password, companyName, numberOfEmployees, aboutYourCompany }=req.body;
+const employer = await Employer.findOne({email})
+
+
+
+      if(employer){
+          return res.json({message:"Employer already exists"})
+      } 
+
+      const hashedPassword = await bcrypt.hash(password,10)
+      
+      const newEmployer =   new Employer({
+        username, email,phoneNumber, password:hashedPassword, companyName, numberOfEmployees, aboutYourCompany
+            ,verified:false
+       })
+    const accessToken = jwt.sign({
+      id:newEmployer._id, email:newEmployer.email,
+      verified:newEmployer.verified
+    }, process.env.KEY)
+    const token = new EmployerToken({
+      EmployerId:newEmployer._id,
+      token:accessToken,
+    })
+    await token.save()
+    await newEmployer.save()
+    return res.json({status:true, message:"Account created successfully"})
+}
+ catch (error) {
+    return res.json(error)
+}
     
-// })
+})
+router.get("/employers", verifyAdmin, async (req, res)=>{
+  try {
+     const employers = await Employer.find()
+     return res.json(employers)
+      
+  } catch (error) {
+      return res.json(error)
+      
+  }
+})
+
+router.put("/updateEmployer/:id", verifyAdmin, async (req, res)=>{
+  try {
+    const {username, email,phoneNumber, password, companyName, numberOfEmployees, aboutYourCompany }=req.body;
+    
+    await Employer.findByIdAndUpdate({_id:req.params.id},{username, email,phoneNumber, password, companyName, numberOfEmployees, aboutYourCompany })
+    return res.json({status:true, message:"user updated successfully"})
+  } catch (error) {
+    console.log(error)
+  }
+})
+
 // //employer login
 // router.post("/login", async(req, res)=>{
 //     const {email ,password} =req.body;
